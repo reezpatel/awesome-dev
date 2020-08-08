@@ -1,6 +1,11 @@
-## Setup Kubernetes Nodes
+## Setup Kubernetes Nodes using ansible
 
----
+### Prerequisite
+
+1. Minium of one VM (Minimum of 2vCPU and 4 GB RAM)
+2. Certificate based SSH Connection to all the nodes
+3. `root` access to all the nodes
+4. [Ansible](https://www.ansible.com/) Installed on the host system
 
 ### Create Config File
 
@@ -25,7 +30,7 @@ server2.example.com
 server3.example.com
 server4.example.com
 ```
-                    
+
 `ansible/vars.yml`
 
 ```yml
@@ -44,7 +49,7 @@ Setup sudo user by running following command
 ```shell
 ansible-playbook -i hosts -e @./vars.yml playbooks/add_user.yml
 ```
-->
+
 ### Spin up Nodes
 
 Below command with install docker, setup kubeadm, create master node, and joins other nodes to cluster.

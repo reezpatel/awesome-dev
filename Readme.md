@@ -10,7 +10,7 @@ Note: Most the tools and application (unless specified) works in Windows, linux,
 
 ---
 
-## WSL Setup (Windows)
+### WSL Setup (Windows)
 
 #### Enabled WSL
 
@@ -18,15 +18,15 @@ Note: Most the tools and application (unless specified) works in Windows, linux,
 
 ---
 
-## Basic Setup - Windows
+### Basic Setup - Windows
 
 ---
 
-## Basic Setup - Shell
+### Basic Setup - Shell
 
 ---
 
-## Bash Setup
+### Bash Setup
 
 #### Install ZSH
 
@@ -44,22 +44,23 @@ load "https://raw.githubusercontent.com/reezpatel/awesome-dev/master/linux/alias
 
 ---
 
-## Applications
+### Applications
 
 ---
 
-## CLI Tools
+### CLI Tools
 
 ---
 
-## VSCode Setup
+### VSCode Setup
 
 ---
 
-## Kubernetes Setup
+### Kubernetes Setup
 
----
+1. [Setup Kubernetes Nodes Using Ansible](https://github.com/reezpatel/awesome-dev/tree/master/ansible)
+2. Setup Kubernetes Cluster Using Terraform
 
-## Remote Development Setup
+### Remote Development Setup
 
 ---
