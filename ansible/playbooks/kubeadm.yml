@@ -1,0 +1,173 @@
+# Kubeadm setup
+- name: Setup
+  hosts: all
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Letting iptables see bridged traffic
+      blockinfile: 
+        create: yes
+        path: /etc/sysctl.d/k8s.conf
+        block: |
+          net.bridge.bridge-nf-call-ip6tables = 1
+          net.bridge.bridge-nf-call-iptables = 1
+
+    - name: Add Docker’s official GPG key
+      shell:
+        cmd: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+
+    - name: Install required packages
+      apt:
+        pkg:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+        update_cache: yes
+
+    - name: Add docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present 
+
+    - name: Install Docker
+      apt:
+        pkg:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        update_cache: yes
+    
+    - name: Add User to docker group
+      user:
+        append: yes
+        groups:
+          - docker
+        name: "{{ SUDO_USER }}"
+        update_password: on_create
+        state: present
+
+    - name: Setup Docker daemon
+      copy: 
+        dest: /etc/docker/daemon.json
+        force: yes
+        content: |
+          {
+            "exec-opts": ["native.cgroupdriver=systemd"],
+            "log-driver": "json-file",
+            "log-opts": {
+              "max-size": "100m"
+            },
+            "storage-driver": "overlay2"
+          }
+
+    - name: Create Docker service directory
+      file:
+        path: "/etc/systemd/system/docker.service.d"
+        state: directory
+
+    - name: Reload Docker
+      systemd:
+        name: docker
+        daemon_reload: yes
+        state: restarted
+        enabled: yes
+
+
+- name: Kubeadm
+  hosts: all
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Disable SWAP since kubernetes can't work with swap enabled (1/2)
+      shell: "swapoff -a"
+    
+    - name: Disable SWAP in fstab since kubernetes can't work with swap enabled (2/2)
+      replace:
+        path: /etc/fstab
+        regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+        replace: '# \1'
+
+    - name: Add Kubeadm official GPG key
+      shell:
+        cmd: "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -"
+
+    - name: Add kubernetes sources
+      blockinfile: 
+        create: yes
+        path: /etc/apt/sources.list.d/kubernetes.list
+        block: |
+          deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+    - name: Install Kubeadm
+      apt:
+        pkg:
+        - kubelet
+        - kubeadm
+        - kubectl
+        update_cache: yes
+  
+    - name: Hold K8S Packages
+      shell:
+        cmd: "apt-mark hold kubelet kubeadm kubectl"
+    
+    - name: Initialize Kubeadm
+      shell: 
+        cmd: "kubeadm config images pull"
+
+    - name: Reset Kubeadm
+      shell: 
+        cmd: "kubeadm reset --force"
+
+- name: Start - Kubernetes Main
+  hosts: main
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Start Kubeadm
+      shell:
+        cmd: "kubeadm init --token {{ token }}"
+      register: init_cluster
+
+    - name: Create Kubernetes config directory
+      file:
+        path: ".kube/"
+        state: directory
+
+    - name: Copy admin.conf to Home directory
+      when: init_cluster is succeeded
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: ".kube/config"
+        owner: "{{ SUDO_USER }}"
+        group: "{{ SUDO_USER }}"
+        mode: 0755
+        remote_src: true
+
+    - name: Enable and check kubelet service
+      systemd:
+        name: kubelet
+        daemon_reload: yes
+        state: started
+        enabled: yes
+      register: started_kubelet
+
+    - name: "Copy config file"
+      fetch:
+        src: /etc/kubernetes/admin.conf 
+        dest: "{{ lookup('env', 'HOME') }}/admin.conf"
+        flat: yes
+      run_once: yes
+      ignore_errors: yes
+
+- name: Start - Kubernetes Subordinate
+  hosts: subordinate
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Join to Kubernetes cluster
+      shell: |
+        kubeadm join --token {{ token }} \
+                    --discovery-token-unsafe-skip-ca-verification \
+                   {{ MASTER_NODE_HOST }}:6443

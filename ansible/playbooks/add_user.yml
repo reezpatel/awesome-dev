@@ -1,0 +1,27 @@
+# Create a Root User
+- name: Create a sudo user
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: Verify 'wheel' group is present
+      group:
+        name: wheel
+        state: present 
+
+    - name: Verify 'sudo' group is present
+      group:
+        name: wheel
+        state: present 
+
+    - name: Create User
+      user:
+        append: yes
+        comment: Non-Root sudo user
+        create_home: true
+        groups:
+          - wheel
+          - sudo
+        name: "{{ SUDO_USER }}"
+        password: "{{ SUDO_USER_PASSWORD | password_hash('sha512') }}"
+        shell: /bin/bash
+        state: present
