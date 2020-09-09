@@ -62,7 +62,7 @@ Install [Ubuntu](https://www.microsoft.com/store/apps/9n6svws3rx71) or any other
 
 ---
 
-### Basic Setup - Shell
+### Basic Setup - Bash
 
 #### Install ZSH
 
@@ -112,11 +112,71 @@ load "https://raw.githubusercontent.com/reezpatel/awesome-dev/master/linux/alias
 
 ---
 
-### Bash Setup
-
----
-
 ### Applications
+
+[Visual Studio Code](https://code.visualstudio.com/) - Code Editor
+
+[Steam](https://store.steampowered.com/) - Steam game client
+
+[Battle.net](http://battle.net/) - Blizzard game client
+
+[Android Studio](https://developer.android.com/studio) - Android Studio
+
+[Adobe Creative Suite](https://www.adobe.com/in/creativecloud.html) - Collection of creative application
+
+[Spotify](https://www.spotify.com/in/download/other/) - Music Service
+
+[Microsoft Office](https://www.microsoft.com/en-in/download/office.aspx) - Microsoft productivity tools
+
+[Groupy](https://www.stardock.com/products/groupy/) - Tabs for windows
+
+[F.Lux](https://justgetflux.com/) - Blue light reduction utility
+
+[ScreenX](https://getsharex.com/) - Screen capture utility
+
+[FDM](https://www.freedownloadmanager.org/) - Download Manager
+
+[RedisInsight](https://redislabs.com/redis-enterprise/redis-insight) - Redis GUI
+
+[Tweenten](https://tweetenapp.com/) - Twitter Client
+
+[Eartumpet](https://eartrumpet.app/) - Volume control for Windows
+
+[Mockoon](https://mockoon.com/) - API Mocking utility
+
+[Kube Forwarder](https://kube-forwarder.pixelpoint.io/) - Kubernetes port forward manager
+
+[Peazip](https://peazip.github.io/) - File archiver utility,
+
+[Rambox](https://rambox.pro/#home) - Productivity Tool
+
+[Whatsapp](https://www.whatsapp.com/download) - Whatsapp
+
+[Raindrop](https://raindrop.io/) - Bookmark Manager
+
+[Ployplane](https://polyplane.com/) - Browser for Developers
+
+[Insomnia Designer](https://insomnia.rest/products/designer/) - API Designing utility
+
+[Jetbrains Toolbox](https://www.jetbrains.com/toolbox-app/) - Tool to manage Jetbrain applications
+
+[XMeters](https://entropy6.com/xmeters/) - Taskbar system stats for Windows
+
+[VeePn](https://veepn.com/) - VPN Client
+
+[MSI Afterburner](https://www.msi.com/page/afterburner) - Graphic card tweaking utility
+
+[MySQL Workbench](https://www.mysql.com/products/workbench/) - MySQL GUI
+
+[MongoDB Compass](https://www.mongodb.com/products/compass) - MongoDB GUI
+
+[WinDirStat](https://windirstat.net/) - Windows disk usage analyzer
+
+[Blender](https://www.blender.org/) - 3D creation tool
+
+[Zoommy](https://zoommyapp.com/) - Browse free stock photos
+
+[Wireshark](https://www.wireshark.org/) - Network packet analyzer
 
 ---
 
