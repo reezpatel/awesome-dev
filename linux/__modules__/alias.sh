@@ -44,5 +44,10 @@ alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%
 alias gdm="!git branch --merged | grep -v '*' | xargs -n 1 git branch -d" # Delete merged branch
 alias gco="git checkout origin" # Checkout to branch from origin
 alias grbm="git rebase master" # Rebase branch with master
-alias grc="git rebase --continue" # Continue rebase 
+alias grbc="git rebase --continue" # Continue rebase
 alias gpm="git checkour origin master && git pull origin master" # Get latest master
+
+alias t=terraform
+alias cat=bat
+alias k=kubectl
+alias a=ansible-playbook
