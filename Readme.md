@@ -15,7 +15,7 @@ Note: Most the tools and application (unless specified) works in Windows, linux,
 Enable WSL and Virtual Machine Platform
 
 ```sh
-# Requires Powershell Admin Privileges
+# Requires Powershell Admin Privileges - Requires Restart
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
@@ -30,6 +30,35 @@ Install [Ubuntu](https://www.microsoft.com/store/apps/9n6svws3rx71) or any other
 ---
 
 ### Basic Setup - Windows
+
+1. Install [Shutup 10](https://www.oo-software.com/en/shutup10) to disable windows telemetry
+2. Install [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) Font
+3. Set Background Image
+4. Install [Microsoft Powertoys](https://github.com/microsoft/PowerToys)
+5. Install [Microsoft Terminal](https://github.com/microsoft/terminal)
+6. Apply Terminal Setting
+
+#### Remap shortcuts - Powertoys
+
+`Win` + `Backspace` - `Ctrl` + `Backspace`
+
+`Win` + `Tab` - `Alt` + `Tab`
+
+`Win` + `A` - `Ctrl` + `A`
+
+`Win` + `C` - `Ctrl` + `C`
+
+`Win` + `F` - `Ctrl` + `F`
+
+`Win` + `S` - `Ctrl` + `S`
+
+`Win` + `V` - `Ctrl` + `V`
+
+`Win` + `X` - `Ctrl` + `X`
+
+`Win` + `Z` - `Ctrl` + `Z`
+
+`Win` + `Shift` + `Z` - `Ctrl` + `Shift` + `Z`
 
 ---
 

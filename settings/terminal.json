@@ -1,0 +1,122 @@
+{
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "defaultProfile": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+  "copyOnSelect": true,
+  "copyFormatting": false,
+  "profiles": {
+    "defaults": {
+      "colorScheme": "Dracula",
+      "fontFace": "Source Code Pro",
+      "fontSize": 11,
+      "fontWeight": "medium"
+    },
+    "list": [
+      {
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "name": "Windows PowerShell",
+        "commandline": "powershell.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+        "name": "Command Prompt",
+        "commandline": "cmd.exe",
+        "hidden": false
+      },
+      {
+        "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+        "hidden": false,
+        "name": "Ubuntu-20.04",
+        "source": "Windows.Terminal.Wsl",
+        "icon": "E:\\Pictures\\Icon\\reez_dev-small.png",
+        "useAcrylic": true,
+        "closeOnExit": "graceful",
+        "acrylicOpacity": 0.8
+      }
+    ]
+  },
+  "schemes": [
+    {
+      "name": "Dracula",
+      "black": "#000000",
+      "red": "#ff5555",
+      "green": "#50fa7b",
+      "yellow": "#f1fa8c",
+      "blue": "#bd93f9",
+      "purple": "#ff79c6",
+      "cyan": "#8be9fd",
+      "white": "#bbbbbb",
+      "brightBlack": "#555555",
+      "brightRed": "#ff5555",
+      "brightGreen": "#50fa7b",
+      "brightYellow": "#f1fa8c",
+      "brightBlue": "#bd93f9",
+      "brightPurple": "#ff79c6",
+      "brightCyan": "#8be9fd",
+      "brightWhite": "#ffffff",
+      "background": "#1e1f29",
+      "foreground": "#f8f8f2"
+    }
+  ],
+  "keybindings": [
+    {
+      "command": {
+        "action": "copy",
+        "singleLine": false
+      },
+      "keys": "ctrl+c"
+    },
+    { "command": "commandPalette", "keys": "ctrl+shift+p" },
+    {
+      "command": "paste",
+      "keys": "ctrl+v"
+    },
+    {
+      "command": "toggleAlwaysOnTop",
+      "keys": "alt+t"
+    },
+    {
+      "command": "find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "auto",
+        "splitMode": "duplicate"
+      },
+      "keys": "alt+ctrl+d"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "vertical"
+      },
+      "keys": "alt+d"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "horizontal"
+      },
+      "keys": "alt+shift+d"
+    },
+    {
+      "command": { "action": "resizePane", "direction": "down" },
+      "keys": "alt+shift+down"
+    },
+    {
+      "command": { "action": "resizePane", "direction": "left" },
+      "keys": "alt+shift+left"
+    },
+    {
+      "command": { "action": "resizePane", "direction": "right" },
+      "keys": "alt+shift+right"
+    },
+    {
+      "command": { "action": "resizePane", "direction": "up" },
+      "keys": "alt+shift+up"
+    },
+    { "command": "closePane", "keys": "ctrl+shift+w" }
+  ]
+}
