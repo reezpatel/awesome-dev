@@ -33,10 +33,10 @@ Install [Ubuntu](https://www.microsoft.com/store/apps/9n6svws3rx71) or any other
 
 1. Install [Shutup 10](https://www.oo-software.com/en/shutup10) to disable windows telemetry
 2. Install [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) Font
-3. Set Background Image
+3. Set [Background Image](https://github.com/reezpatel/awesome-dev/blob/master/assets/bg.jpg)
 4. Install [Microsoft Powertoys](https://github.com/microsoft/PowerToys)
 5. Install [Microsoft Terminal](https://github.com/microsoft/terminal)
-6. Apply Terminal Setting
+6. Apply [Terminal Setting](https://github.com/reezpatel/awesome-dev/blob/master/settings/terminal.json)
 
 #### Remap shortcuts - Powertoys
 
@@ -70,7 +70,40 @@ Install [Ubuntu](https://www.microsoft.com/store/apps/9n6svws3rx71) or any other
 
 #### Install ZSH
 
+```sh
+sudo apt-get update
+sudo apt-get install zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Optional
+sudo usermod -s /usr/bin/zsh $(whoami)
+sudo reboot
+```
+
 #### Install SpaceShip
+
+```
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+```
+
+Set `ZSH_THEME="spaceship"` in your .zshrc.
+
+#### Install zsh plugins
+
+```
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+git clone https://github.com/horosgrisa/mysql-colorize ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/mysql-colorize
+
+```
+
+Set `plugins` to `plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions mysql-colorize)`
 
 #### Use dynamic .bashrc
 
