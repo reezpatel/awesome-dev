@@ -12,9 +12,20 @@ Note: Most the tools and application (unless specified) works in Windows, linux,
 
 ### WSL Setup (Windows)
 
-#### Enabled WSL
+Enable WSL and Virtual Machine Platform
 
-#### Install WSL
+```sh
+# Requires Powershell Admin Privileges
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+# Enable WSL 2
+wsl --set-default-version 2
+```
+
+Install [Ubuntu](https://www.microsoft.com/store/apps/9n6svws3rx71) or any other choice of Linux Distribution from [Microsoft Store](https://aka.ms/wslstore).
+
+> The first time you launch a newly installed Linux distribution, a console window will open and you'll be asked to wait for a minute or two for files to de-compress and be stored on your PC. All future launches should take less than a second.
 
 ---
 
@@ -59,7 +70,7 @@ load "https://raw.githubusercontent.com/reezpatel/awesome-dev/master/linux/alias
 ### Kubernetes Setup
 
 1. [Setup Kubernetes Nodes Using Ansible](https://github.com/reezpatel/awesome-dev/tree/master/ansible)
-2. Setup Kubernetes Cluster Using Terraform
+2. [Setup Kubernetes Cluster Using Terraform](https://github.com/reezpatel/awesome-dev/tree/master/terraform)
 
 ### Remote Development Setup
 
