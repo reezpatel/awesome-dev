@@ -182,6 +182,165 @@ load "https://raw.githubusercontent.com/reezpatel/awesome-dev/master/linux/alias
 
 ### CLI Tools
 
+#### Install NodeJS
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+```
+
+Add following lines to `.bashrc` or `.zshrc`
+
+```sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+
+Download latest lts build and use it
+
+```sh
+nvm install --lts
+nvm use --lts
+```
+
+#### Install homebrew
+
+Run following command to install homebrew
+
+```sh
+sudo apt-get install build-essential
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> /home/reezpatel/.zprofile
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+```
+
+#### Install Terraform
+
+Run following command to install [Terraform](https://www.terraform.io/)
+
+```sh
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-get update && sudo apt-get install terraform
+```
+
+#### Install Ansible
+
+Run following command to install [Ansible](https://www.ansible.com/)
+
+```sh
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
+sudo apt install ansible
+```
+
+#### Install Kubectl
+
+Run following command to install [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
+
+```sh
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/bin/.
+```
+
+#### Install Application
+
+Run following commands to install application
+
+```sh
+# Can I Use CLI (https://github.com/sgentle/caniuse-cmd)
+npm i -g caniuse-cmd
+
+# Httpie (https://httpie.org/)
+sudo apt-get install httpie
+
+# ICDiff (https://www.jefftk.com/icdiff)
+sudo apt-get install icdiff
+
+# JQ (https://stedolan.github.io/jq/)
+brew install jq
+
+# Autojump (https://github.com/wting/autojump)
+sudo apt-get install autojump
+echo "source /usr/share/autojump/autojump.zsh" >> ~/.zshrc
+
+# Bat (https://github.com/sharkdp/bat)
+sudo apt install bat
+ln -s /usr/bin/batcat usr/bin/bat
+
+# Htop (https://htop.dev/)
+sudo apt install htop
+
+# TLDR (https://tldr.sh/)
+npm install -g tldr
+
+# CLI Typer(https://github.com/balzss/cli-typer)
+npm install -g balzss/cli-typer
+
+# Overtime CLI (https://github.com/diit/overtime-cli)
+npm install -g overtime-cli
+
+# Taskwarrior (https://taskwarrior.org/)
+sudo apt-get install taskwarrior
+
+# fx (https://github.com/antonmedv/fx)
+npm install -g fx
+
+# Git Status (https://github.com/IonicaBizau/git-stats)
+npm i -g git-stats
+
+# Dev Stats (https://github.com/shroudedcode/devstats)
+npm install -g devstats
+devstats add https://github.com/reezpatel
+devstats add https://stackoverflow.com/users/5951630/
+devstats add https://wakatime.com/@59f6ecb9-6930-4727-af34-4243f1daa2b0
+devstats add https://www.hackerrank.com/reezpatel
+
+
+# Asciinema (https://asciinema.org/)
+brew install asciinema
+
+# yq (https://github.com/kislyuk/yq)
+brew install python-yq
+
+# np (https://github.com/kislyuk/yq)
+npm install --global np
+
+# Github CLI (https://github.com/cli/cli)
+brew install gh
+
+# Kubebox (https://github.com/astefanutti/kubebox)
+curl -Lo kubebox https://github.com/astefanutti/kubebox/releases/download/v0.8.0/kubebox-linux && chmod +x kubebox
+sudo mv kubebox /usr/bin/.
+
+# Lolcat (https://github.com/busyloop/lolcat)
+brew install lolcat
+
+# FD (https://github.com/sharkdp/fd)
+sudo apt install fd-find
+```
+
+#### Setup terminal Startup message
+
+Install [Devstats](https://github.com/shroudedcode/devstats) and other prerequisite tools
+
+```sh
+sudo apt-get install wget cowsay lolcat
+brew install js
+```
+
+Add following line at end of `.bashrc` or `.zshrc`
+
+```sh
+wget "https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=racist,sexist&type=single" -qO- | jq -r '.joke' | cowsay | lolcat -s 1
+
+devstats
+```
+
 ---
 
 ### VSCode Setup
