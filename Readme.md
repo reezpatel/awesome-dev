@@ -336,9 +336,9 @@ brew install js
 Add following line at end of `.bashrc` or `.zshrc`
 
 ```sh
-wget "https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=racist,sexist&type=single" -qO- | jq -r '.joke' | cowsay | lolcat -s 1
+wget "https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=racist,sexist&type=single" -qO- | jq -r '.joke' | cowsay -W 80 -f tux | lolcat -s 1
 
-devstats
+devstats -w
 ```
 
 ---
