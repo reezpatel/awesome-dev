@@ -252,6 +252,9 @@ sudo mv ./kubectl /usr/bin/.
 Run following commands to install application
 
 ```sh
+# Exa (https://github.com/ogham/exa)
+brew install exa
+
 # Can I Use CLI (https://github.com/sgentle/caniuse-cmd)
 npm i -g caniuse-cmd
 
