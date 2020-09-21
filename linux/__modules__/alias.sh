@@ -52,7 +52,7 @@ alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%
 # Checkout to branch from origin
 alias gco="git checkout origin"
 # Delete merged branch
-alias gdm="!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
+alias gdm="git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
 
 # Continue rebase
 alias grbc="git rebase --continue"
@@ -62,6 +62,9 @@ alias grbm="git rebase master"
 
 # Get latest master
 alias gpm="git checkour origin master && git pull origin master"
+
+# Pull & Rebase
+alias gp="git pull -r"
 
 # Frequently used commands
 alias t=terraform
