@@ -1,0 +1,7 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: devpunk-bucket-claim
+spec:
+  generateBucketName: devpunk
+  storageClassName: rex-bucket

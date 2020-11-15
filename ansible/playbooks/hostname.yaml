@@ -1,0 +1,7 @@
+- name: Host Name
+  hosts: all
+  remote_user: root
+  tasks:
+    - name: Change host name
+      hostname:
+        name: "{{ inventory_hostname }}"

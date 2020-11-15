@@ -1,0 +1,64 @@
+- name: Kubeadm
+  hosts: all
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Initialize Kubeadm
+      shell:
+        cmd: "kubeadm config images pull"
+
+    - name: Reset Kubeadm
+      shell:
+        cmd: "kubeadm reset --force"
+
+- name: Start - Kubernetes Main
+  hosts: main
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Start Kubeadm
+      shell:
+        cmd: "kubeadm init --token {{ token }} --pod-network-cidr=10.244.0.0/16"
+      register: init_cluster
+
+    - name: Create Kubernetes config directory
+      file:
+        path: ".kube/"
+        state: directory
+
+    - name: Copy admin.conf to Home directory
+      when: init_cluster is succeeded
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: ".kube/config"
+        owner: "{{ SUDO_USER }}"
+        group: "{{ SUDO_USER }}"
+        mode: 0755
+        remote_src: true
+
+    - name: Enable and check kubelet service
+      systemd:
+        name: kubelet
+        daemon_reload: yes
+        state: started
+        enabled: yes
+      register: started_kubelet
+
+    - name: "Copy config file"
+      fetch:
+        src: /etc/kubernetes/admin.conf
+        dest: "{{ lookup('env', 'HOME') }}/admin.conf"
+        flat: yes
+      run_once: yes
+      ignore_errors: yes
+
+- name: Start - Kubernetes Subordinate
+  hosts: subordinate
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Join to Kubernetes cluster
+      shell: |
+        kubeadm join --token {{ token }} \
+                    --discovery-token-unsafe-skip-ca-verification \
+                   {{ MASTER_NODE_HOST }}:6443

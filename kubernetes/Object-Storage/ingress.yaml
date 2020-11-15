@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rez-store-ingress
+  namespace: rook-ceph
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: "storage.rlab.app"
+    http:
+      paths:
+      - path: "/"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: rook-ceph-rgw-rex-store
+            port:
+              number: 80
+  - host: "devpunk-2d07f875-b9e8-4c44-bc54-ef29466f7895.storage.rlab.app"
+    http:
+      paths:
+      - path: "/"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: rook-ceph-rgw-rex-store
+            port:
+              number: 80

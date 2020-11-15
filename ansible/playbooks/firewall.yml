@@ -1,0 +1,75 @@
+---
+- name: Install Firewall
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  hosts: all
+  tasks:
+    - name: Install firewalld
+      package:
+        name: firewalld
+        state: present
+
+    - name: Start and enable firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: Open calico UDP ports on the firewall
+      firewalld:
+        port: "{{ item }}/udp"
+        permanent: yes
+        state: enabled
+      with_items:
+        - 5473
+        - 179
+          - 5473
+
+    - name: Open calico TCP ports on the firewall
+      firewalld:
+        port: "{{ item }}/tcp"
+        permanent: yes
+        state: enabled
+      with_items:
+        - 5473
+        - 179
+        - 5473
+
+- name: Configure Firewall for Master
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  hosts: main
+  tasks:
+    - name: Configure firewalld on master nodes
+      firewalld:
+        port: "{{ item }}/tcp"
+        permanent: yes
+        state: enabled
+      with_items:
+        - 6443
+        - 2379-2380
+        - 10250
+        - 10251
+        - 10252
+
+- name: Configure Firewall for Workers
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  hosts: subordinate
+  tasks:
+    - name: Configure firewalld on worker nodes
+      firewalld:
+        port: "{{ item }}/tcp"
+        permanent: yes
+        state: enabled
+      with_items:
+        - 10250
+        - 30000-32767
+
+- name: Install Firewall
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  hosts: all
+  tasks:
+    - name: Reload firewalld
+      shell: firewall-cmd --reload

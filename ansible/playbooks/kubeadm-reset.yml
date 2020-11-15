@@ -1,0 +1,9 @@
+# Kubeadm rest
+- name: Reset - Kubernetes
+  hosts: all
+  remote_user: "{{ SUDO_USER }}"
+  become: yes
+  tasks:
+    - name: Reset Kubeadm
+      shell:
+        cmd: kubeadm reset -f
