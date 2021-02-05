@@ -72,7 +72,7 @@ alias k=kubectl
 alias a=ansible-playbook
 
 # Application replacement alias
-alias cat=bat
+alias cat=batcat
 alias icdiff=diff
 alias top=htop
 alias record='asciinema rec'
