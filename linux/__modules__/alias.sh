@@ -76,7 +76,7 @@ alias cat=batcat
 alias icdiff=diff
 alias top=htop
 alias record='asciinema rec'
-alias find=fdfind
+alias find=fd
 
 # Other alias
 alias td='overtime show Asia/Calcutta America/Santiago'
