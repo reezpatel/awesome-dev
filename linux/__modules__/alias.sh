@@ -21,11 +21,15 @@ alias ll='exa --long --header --git --all'
 alias ls='exa --all'
 alias tree='exa --tree'
 
+# grep
+alias grep='grep --color=auto'
+
 # Signal
 alias reboot='sudo /sbin/reboot'
 alias poweroff='sudo /sbin/poweroff'
 alias halt='sudo /sbin/halt'
 alias shutdown='sudo /sbin/shutdown'
+alias reload="exec ${SHELL} -l"
 
 # Resources
 alias meminfo='free -m -l -t'
@@ -70,6 +74,7 @@ alias gp="git pull -r"
 alias t=terraform
 alias k=kubectl
 alias a=ansible-playbook
+alias w="cd ~/workspace"
 
 # Application replacement alias
 alias cat=batcat
