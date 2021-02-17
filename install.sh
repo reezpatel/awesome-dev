@@ -20,7 +20,7 @@ function error() {
 function updateBrew() {
     if [[ $(command -v brew) == "" ]]; then
         info "Installing Homebrew"
-        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
         warn "Homebrew is already present"
         info "Updating Homebrew"
