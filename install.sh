@@ -110,6 +110,7 @@ brewi "git"
 brewi "coreutils"
 brewi "moreutils"
 brewi "findutils"
+brewi "gcc"
 
 setupZsh
 setupNode
